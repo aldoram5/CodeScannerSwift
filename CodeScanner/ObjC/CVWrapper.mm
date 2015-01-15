@@ -87,8 +87,18 @@ static void findSquares(  const Mat& image,   vector<vector<cv::Point> >& square
 +(bool )CheckIfCodeIsRecognized :( UIImage*) image
 {
 
+    Mat photo = [CVWrapper CVMatFromUIImage:image];
+    vector<vector<cv::Point> > squares = detectSquaresInImage(photo, 20.0, 50, 7, 0);
+    if(squares.size()< 4)
+        return NO;
     
-    detectSquaresInImage([CVWrapper CVMatFromUIImage:image], 20.0, 50, 7, 0);
+    //TODO:
+    //Find the biggest one
+    //Crop image to that rect
+    //Detect blobs on the others
+    //check colors
+    
+    
     return YES;
 
 }

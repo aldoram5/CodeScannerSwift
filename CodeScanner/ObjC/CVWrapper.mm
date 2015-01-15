@@ -88,7 +88,7 @@ static void findSquares(  const Mat& image,   vector<vector<cv::Point> >& square
 {
 
     
-    detectSquaresInImage([CVWrapper CVMatFromUIImage:image], 20.0, 50, 7, 1);
+    detectSquaresInImage([CVWrapper CVMatFromUIImage:image], 20.0, 50, 7, 0);
     return YES;
 
 }
@@ -132,93 +132,88 @@ static double angle( cv::Point pt1, cv::Point pt2, cv::Point pt0 )
 static void findSquares(  const Mat& image,   vector<vector<cv::Point> >& squares )
 
 {
-    squares.clear();
+    // blur will enhance edge detection
+    Mat blurred(image);
+    medianBlur(image, blurred, 9);
     
-    Mat pyr, timg, gray0(image.size(), CV_8U), gray;
-    
-    // down-scale and upscale the image to filter out the noise
-    pyrDown(image, pyr, cv::Size(image.cols/2, image.rows/2));
-    pyrUp(pyr, timg, image.size());
+    Mat gray0(blurred.size(), CV_8U), gray;
     vector<vector<cv::Point> > contours;
     
     // find squares in every color plane of the image
-    int planes = 1;
-    int canny = 0;
-    if (accuracy) {
-        planes = 4;
-        canny = 1;
-    }
-    for( int c = 0; c < planes; c++ )
+    for (int c = 0; c < 3; c++)
     {
         int ch[] = {c, 0};
-        mixChannels(&timg, 1, &gray0, 1, ch, 1);
+        mixChannels(&blurred, 1, &gray0, 1, ch, 1);
         
         // try several threshold levels
-        for( int l = 0; l < N; l++ )
+        const int threshold_level = 2;
+        for (int l = 0; l < threshold_level; l++)
         {
-            // hack: use Canny instead of zero threshold level.
+            // Use Canny instead of zero threshold level!
             // Canny helps to catch squares with gradient shading
-            if( l == 0 && canny == 1 )
+            if (l == 0)
             {
-                // apply Canny. Take the upper threshold from slider
-                // and set the lower to 0 (which forces edges merging)
-                Canny(gray0, gray, 0, thresh, 5);
-                // dilate canny output to remove potent5ial
-                // holes between edge segments
+                Canny(gray0, gray, 10, 20, 3); //
+                
+                // Dilate helps to remove potential holes between edge segments
                 dilate(gray, gray, Mat(), cv::Point(-1,-1));
             }
             else
             {
-                // apply threshold if l!=0:
-                //     tgray(x,y) = gray(x,y) < (l+1)*255/N ? 255 : 0
-                gray = gray0 >= (l+1)*255/N;
+                gray = gray0 >= (l+1) * 255 / threshold_level;
             }
             
-            // find contours and store them all as a list
+            // Find contours and store them in a list
             findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
             
+            // Test contours
             vector<cv::Point> approx;
-            
-            // test each contour
-            for( size_t i = 0; i < contours.size(); i++ )
+            for (size_t i = 0; i < contours.size(); i++)
             {
                 // approximate contour with accuracy proportional
                 // to the contour perimeter
                 approxPolyDP(Mat(contours[i]), approx, arcLength(Mat(contours[i]), true)*0.02, true);
                 
-                // square contours should have 4 vertices after approximation
-                // relatively large area (to filter out noisy contours)
-                // and be convex.
                 // Note: absolute value of an area is used because
                 // area may be positive or negative - in accordance with the
                 // contour orientation
-                if( approx.size() == 4 &&
-                   fabs(contourArea(Mat(approx))) > 1000 &&
-                   isContourConvex(Mat(approx)) )
+                if (approx.size() == 4 &&
+                    fabs(contourArea(Mat(approx))) > 1000 &&
+                    isContourConvex(Mat(approx)))
                 {
                     double maxCosine = 0;
                     
-                    for( int j = 2; j < 5; j++ )
+                    for (int j = 2; j < 5; j++)
                     {
-                        // find the maximum cosine of the angle between joint edges
                         double cosine = fabs(angle(approx[j%4], approx[j-2], approx[j-1]));
                         maxCosine = MAX(maxCosine, cosine);
                     }
                     
-                    // if cosines of all angles are small
-                    // (all angles are ~90 degree) then write quandrange
-                    // vertices to resultant sequence
-                    
-                    if( maxCosine < tolerance )
+                    if (maxCosine < 0.3)
                         squares.push_back(approx);
                 }
             }
         }
     }
-    
     for (int i = 0 ; i < squares.size() ; i++) {
+        int tempX, tempY, radius = 50;
+        tempX = (squares[i])[0].x;
+        tempY = (squares[i])[0].y;
+        cv::Rect tempR = cv::Rect(tempX-radius,tempY-radius,radius*2,radius*2);
+        
+        for (int j = i+1 ; j < squares.size(); j++) {
+            if( tempR.contains(squares[j][0]) ){
+                squares.erase(squares.begin() + j);
+                j--;
+            }
+        }
         cout << squares[i] <<endl;
     }
+    
+            
+        
+    
+    
     cout << squares.size() <<endl;
 }
 

@@ -16,10 +16,11 @@
 @interface CVWrapper : NSObject
 
 
-+(bool )CheckIfFaceIsRecognized :( UIImage*) image;
-+(void )CreateLBPHFaceRecognizer:( NSString * ) csv;
-+(void )LoadLBPHFaceRecognizer;
-+(void ) ForceSaveRecognizer;
+//+(bool )CheckIfFaceIsRecognized :( UIImage*) image;
+//+(void )CreateLBPHFaceRecognizer:( NSString * ) csv;
+//+(void )LoadLBPHFaceRecognizer;
+//+(void ) ForceSaveRecognizer;
++(bool )CheckIfCodeIsRecognized :( UIImage*) image;
 
 @end
 

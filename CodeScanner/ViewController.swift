@@ -13,13 +13,18 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     //UI related properties
     var previewView : UIView!;
     
+    
     //Camera Capture requiered properties
     var videoDataOutput: AVCaptureVideoDataOutput!;
     var videoDataOutputQueue : dispatch_queue_t!;
     var previewLayer:AVCaptureVideoPreviewLayer!;
     var captureDevice : AVCaptureDevice!
     var session : AVCaptureSession! = AVCaptureSession();
+    var currentFrame:CIImage!
+    var prcocessFrame:Bool = false
 
+    //IB references
+    @IBOutlet var instructionsView:UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         self.view.addSubview(previewView);
         
         self.setupAVCapture();
+        self.view.bringSubviewToFront(instructionsView)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -46,6 +52,17 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         else {
             return true;
         }
+    }
+    
+    //IBActions
+    
+    @IBAction func checkForCode(){
+        UIGraphicsBeginImageContext(currentFrame.extent().size)
+        UIImage(CIImage: currentFrame)?.drawAtPoint(CGPointZero)
+        let tempUIImage: UIImage =  UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        CVWrapper.CheckIfCodeIsRecognized(tempUIImage);
     }
 
 }
@@ -109,7 +126,9 @@ extension ViewController:  AVCaptureVideoDataOutputSampleBufferDelegate{
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
-        var ciImage =   Utils.convertImageFromCMSampleBufferRef(sampleBuffer);
+        currentFrame =   Utils.convertImageFromCMSampleBufferRef(sampleBuffer);
+        if(prcocessFrame){
+        }
         // TODO: Detect blobs here
         
     }

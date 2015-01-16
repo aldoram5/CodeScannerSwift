@@ -62,7 +62,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let tempUIImage: UIImage =  UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        CVWrapper.CheckIfCodeIsRecognized(tempUIImage);
+        println(CVWrapper.CheckIfCodeIsRecognized(tempUIImage));
     }
 
 }

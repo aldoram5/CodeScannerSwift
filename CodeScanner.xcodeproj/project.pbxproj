@@ -14,8 +14,12 @@
 		EF77AE621A66CA9F0080369B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF77AE601A66CA9F0080369B /* LaunchScreen.xib */; };
 		EF77AE6E1A66CA9F0080369B /* CodeScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF77AE6D1A66CA9F0080369B /* CodeScannerTests.swift */; };
 		EF77AE781A66CB940080369B /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF77AE771A66CB940080369B /* opencv2.framework */; };
-		EF77AE7C1A66CC4A0080369B /* CVWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EF77AE7B1A66CC4A0080369B /* CVWrapper.m */; };
+		EF77AE7C1A66CC4A0080369B /* CVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF77AE7B1A66CC4A0080369B /* CVWrapper.mm */; };
 		EF77AE7F1A66D6D40080369B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF77AE7E1A66D6D40080369B /* Utils.swift */; };
+		EFC8F2FA1A69AA84009EB082 /* ButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC8F2F91A69AA84009EB082 /* ButtonsViewController.swift */; };
+		EFC8F2FF1A69ABC5009EB082 /* boton_duck.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC8F2FC1A69ABC5009EB082 /* boton_duck.png */; };
+		EFC8F3001A69ABC5009EB082 /* boton_google.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC8F2FD1A69ABC5009EB082 /* boton_google.png */; };
+		EFC8F3011A69ABC5009EB082 /* boton_xbox.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC8F2FE1A69ABC5009EB082 /* boton_xbox.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,9 +45,13 @@
 		EF77AE6D1A66CA9F0080369B /* CodeScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScannerTests.swift; sourceTree = "<group>"; };
 		EF77AE771A66CB940080369B /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../Downloads/opencv2.framework; sourceTree = "<group>"; };
 		EF77AE7A1A66CC4A0080369B /* CodeScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CodeScanner-Bridging-Header.h"; sourceTree = "<group>"; };
-		EF77AE7B1A66CC4A0080369B /* CVWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVWrapper.m; sourceTree = "<group>"; };
+		EF77AE7B1A66CC4A0080369B /* CVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVWrapper.mm; sourceTree = "<group>"; };
 		EF77AE7D1A66CC770080369B /* CVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVWrapper.h; sourceTree = "<group>"; };
 		EF77AE7E1A66D6D40080369B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		EFC8F2F91A69AA84009EB082 /* ButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonsViewController.swift; path = CodeScanner/ButtonsViewController.swift; sourceTree = "<group>"; };
+		EFC8F2FC1A69ABC5009EB082 /* boton_duck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boton_duck.png; sourceTree = "<group>"; };
+		EFC8F2FD1A69ABC5009EB082 /* boton_google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boton_google.png; sourceTree = "<group>"; };
+		EFC8F2FE1A69ABC5009EB082 /* boton_xbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boton_xbox.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,8 @@
 		EF77AE491A66CA9E0080369B = {
 			isa = PBXGroup;
 			children = (
+				EFC8F2FB1A69ABC5009EB082 /* botones */,
+				EFC8F2F91A69AA84009EB082 /* ButtonsViewController.swift */,
 				EF77AE771A66CB940080369B /* opencv2.framework */,
 				EF77AE541A66CA9E0080369B /* CodeScanner */,
 				EF77AE6A1A66CA9F0080369B /* CodeScannerTests */,
@@ -127,11 +137,21 @@
 		EF77AE791A66CBEA0080369B /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				EF77AE7B1A66CC4A0080369B /* CVWrapper.m */,
+				EF77AE7B1A66CC4A0080369B /* CVWrapper.mm */,
 				EF77AE7A1A66CC4A0080369B /* CodeScanner-Bridging-Header.h */,
 				EF77AE7D1A66CC770080369B /* CVWrapper.h */,
 			);
 			path = ObjC;
+			sourceTree = "<group>";
+		};
+		EFC8F2FB1A69ABC5009EB082 /* botones */ = {
+			isa = PBXGroup;
+			children = (
+				EFC8F2FC1A69ABC5009EB082 /* boton_duck.png */,
+				EFC8F2FD1A69ABC5009EB082 /* boton_google.png */,
+				EFC8F2FE1A69ABC5009EB082 /* boton_xbox.png */,
+			);
+			path = botones;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +235,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF77AE5D1A66CA9F0080369B /* Main.storyboard in Resources */,
+				EFC8F3011A69ABC5009EB082 /* boton_xbox.png in Resources */,
+				EFC8F3001A69ABC5009EB082 /* boton_google.png in Resources */,
+				EFC8F2FF1A69ABC5009EB082 /* boton_duck.png in Resources */,
 				EF77AE621A66CA9F0080369B /* LaunchScreen.xib in Resources */,
 				EF77AE5F1A66CA9F0080369B /* Images.xcassets in Resources */,
 			);
@@ -235,7 +258,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF77AE5A1A66CA9F0080369B /* ViewController.swift in Sources */,
-				EF77AE7C1A66CC4A0080369B /* CVWrapper.m in Sources */,
+				EF77AE7C1A66CC4A0080369B /* CVWrapper.mm in Sources */,
+				EFC8F2FA1A69AA84009EB082 /* ButtonsViewController.swift in Sources */,
 				EF77AE581A66CA9E0080369B /* AppDelegate.swift in Sources */,
 				EF77AE7F1A66D6D40080369B /* Utils.swift in Sources */,
 			);
@@ -444,6 +468,7 @@
 				EF77AE731A66CA9F0080369B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF77AE741A66CA9F0080369B /* Build configuration list for PBXNativeTarget "CodeScannerTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +477,7 @@
 				EF77AE761A66CA9F0080369B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

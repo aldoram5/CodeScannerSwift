@@ -22,12 +22,16 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var session : AVCaptureSession! = AVCaptureSession();
     var currentFrame:CIImage!
     var prcocessFrame:Bool = false
+    var detected:Bool = false
 
     //IB references
     @IBOutlet var instructionsView:UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(detected){
+            return;
+        }
         var screenSize = UIScreen.mainScreen().bounds.size;
         self.previewView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height));
         self.previewView.contentMode = UIViewContentMode.ScaleAspectFit
@@ -61,8 +65,18 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         UIImage(CIImage: currentFrame)?.drawAtPoint(CGPointZero)
         let tempUIImage: UIImage =  UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        detected = CVWrapper.CheckIfCodeIsRecognized(tempUIImage)
 
-        println(CVWrapper.CheckIfCodeIsRecognized(tempUIImage));
+        println(detected)
+        if(detected){
+            teardownAVCapture()
+            var mainStoryboard = UIStoryboard(name: "Main", bundle: nil);
+            
+            let lvc = mainStoryboard.instantiateViewControllerWithIdentifier("buttons") as UIViewController;
+            lvc.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+            self.presentViewController(lvc, animated: false, nil);
+
+        }
     }
 
 }

@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CodeScanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="init" id="BYZ-38-t0r" customClass="ViewController" customModule="CodeScanner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -75,5 +75,73 @@
             </objects>
             <point key="canvasLocation" x="252" y="429"/>
         </scene>
+        <!--Buttons-->
+        <scene sceneID="5Es-TV-Ty3">
+            <objects>
+                <viewController storyboardIdentifier="buttons" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3zI-tC-nDL" customClass="Buttons" customModule="CodeScanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dOh-jy-0ji"/>
+                        <viewControllerLayoutGuide type="bottom" id="uMg-g4-6Xt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EQ7-S7-gZX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYj-nK-9SY">
+                                <rect key="frame" x="16" y="255" width="568" height="90"/>
+                                <state key="normal" backgroundImage="boton_google.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openUrlGoogle" destination="3zI-tC-nDL" eventType="touchUpInside" id="jmY-Zj-lD7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ci8-kG-Ec5">
+                                <rect key="frame" x="16" y="40" width="568" height="90"/>
+                                <state key="normal" backgroundImage="boton_duck.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openUrlDuckMedia" destination="3zI-tC-nDL" eventType="touchUpInside" id="gCW-SJ-8fT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHY-bW-7zI" userLabel="Xbox">
+                                <rect key="frame" x="16" y="494" width="568" height="86"/>
+                                <state key="normal" backgroundImage="boton_xbox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openUrlXBOX" destination="3zI-tC-nDL" eventType="touchUpInside" id="VdH-nd-FVi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WHY-bW-7zI" firstAttribute="trailing" secondItem="EQ7-S7-gZX" secondAttribute="trailingMargin" id="0cW-JZ-TR8"/>
+                            <constraint firstItem="eYj-nK-9SY" firstAttribute="height" secondItem="EQ7-S7-gZX" secondAttribute="height" multiplier="0.15" id="4gn-Cm-GJp"/>
+                            <constraint firstAttribute="centerX" secondItem="WHY-bW-7zI" secondAttribute="centerX" id="9IU-v2-uk2"/>
+                            <constraint firstItem="eYj-nK-9SY" firstAttribute="trailing" secondItem="EQ7-S7-gZX" secondAttribute="trailingMargin" id="9K2-cH-9B3"/>
+                            <constraint firstAttribute="centerY" secondItem="eYj-nK-9SY" secondAttribute="centerY" id="CjH-2d-Wf2"/>
+                            <constraint firstItem="WHY-bW-7zI" firstAttribute="leading" secondItem="EQ7-S7-gZX" secondAttribute="leadingMargin" id="FOP-KY-Afc"/>
+                            <constraint firstItem="eYj-nK-9SY" firstAttribute="leading" secondItem="EQ7-S7-gZX" secondAttribute="leadingMargin" id="Kic-YE-vk5"/>
+                            <constraint firstItem="ci8-kG-Ec5" firstAttribute="top" secondItem="dOh-jy-0ji" secondAttribute="bottom" constant="20" id="MVS-LN-N93"/>
+                            <constraint firstAttribute="height" secondItem="WHY-bW-7zI" secondAttribute="height" multiplier="7" id="Shl-PP-9QJ"/>
+                            <constraint firstItem="ci8-kG-Ec5" firstAttribute="trailing" secondItem="EQ7-S7-gZX" secondAttribute="trailingMargin" id="Spn-R5-83e"/>
+                            <constraint firstItem="ci8-kG-Ec5" firstAttribute="leading" secondItem="EQ7-S7-gZX" secondAttribute="leadingMargin" id="YeS-4E-qFu"/>
+                            <constraint firstItem="ci8-kG-Ec5" firstAttribute="height" secondItem="EQ7-S7-gZX" secondAttribute="height" multiplier="0.15" id="cC9-4R-AGV"/>
+                            <constraint firstAttribute="centerX" secondItem="eYj-nK-9SY" secondAttribute="centerX" id="leX-Hq-Tpp"/>
+                            <constraint firstItem="uMg-g4-6Xt" firstAttribute="top" secondItem="WHY-bW-7zI" secondAttribute="bottom" constant="20" id="upw-28-xXf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3qi-Wj-lCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111" y="541"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="boton_duck.png" width="3738" height="964"/>
+        <image name="boton_google.png" width="3738" height="964"/>
+        <image name="boton_xbox.png" width="3738" height="964"/>
+    </resources>
 </document>

@@ -133,9 +133,9 @@ static void findSquares(  const Mat& image,   vector<vector<cv::Point> >& square
     BOOL blue= NO;
     vector<cv::Scalar> colors;
     //colors.push_back(Scalar(8,170,80));
-    colors.push_back(Scalar(0,80,50));
+    colors.push_back(Scalar(0,80,10));
     colors.push_back(Scalar(39,80,50));
-    colors.push_back(Scalar(75,190,80));
+    colors.push_back(Scalar(75,90,80));
     vector<cv::Scalar> colors2;
     //colors2.push_back(Scalar(18,190,102));
     colors2.push_back(Scalar(26,255,255));
